@@ -21,10 +21,8 @@ Cahier des charges:
   
 -Existence et le comportement de PNJ : Sbires qui attaquent le personnage au corps à corps
   
--Présence de musique : https://youtu.be/1t8B3Sx8X-0
-                       https://youtu.be/e5D2jqSVuZ8
-                       
-  
+-Présence de musique : https://youtu.be/1t8B3Sx8X-0 / https://youtu.be/LHhjnJP0VCo / https://youtu.be/buTtWGI1KgI / https://youtu.be/uQXA9RkC_-c
+   
 -Système de projectiles : Le personnage tire des projectiles et esquive des lasers/boules de feu
 
 -Personnage : Bob-omb 
