@@ -4,22 +4,22 @@ Nous allons créer un jeu vidéo dans lequel nous pourrons déplacer un personag
 
 Cahier des charges:
 
-  -Exemple de jeu existant : LOL Dodge Game ( https://loldodgegame.com/dodge/ ) et Mario danger bob omb danger ![image](https://user-  images.githubusercontent.com/119674954/206699870-22b373e7-b407-48c8-94a5-0ef7cfd662aa.png)
+-Exemple de jeu existant : LOL Dodge Game ( https://loldodgegame.com/dodge/ ) et Mario danger bob omb danger ![image](https://user-images.githubusercontent.com/119674954/206699870-22b373e7-b407-48c8-94a5-0ef7cfd662aa.png)
 
-  -Type de contrôle utilisé : clavier
+-Type de contrôle utilisé : clavier
 
-  -Nombre de joueurs : 1
+-Nombre de joueurs : 1
 
-  -Type de graphisme : 2D, vue d'en haut, pas de srolling
+-Type de graphisme : 2D, vue d'en haut, pas de srolling
 
-  -Nombre de niveaux : 3
+-Nombre de niveaux : 3
 
-  -Système de points et/ou de vies : Minuteur du temps d'un niveau et 1 vie
+-Système de points et/ou de vies : Minuteur du temps d'un niveau et 1 vie
 
-  -Les niveaux sont de difficultés croissantes
+-Les niveaux sont de difficultés croissantes
   
-  -Existence et le comportement de PNJ : Sbires qui attaquent le personnage au corps à corps
+-Existence et le comportement de PNJ : Sbires qui attaquent le personnage au corps à corps
   
-  -Présence de musique
+-Présence de musique
   
-  -Système de projectiles : Le personnage tire des projectiles et esquive des lasers/boules de feu
+-Système de projectiles : Le personnage tire des projectiles et esquive des lasers/boules de feu
