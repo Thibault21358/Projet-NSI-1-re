@@ -10,4 +10,10 @@ Cahier des charges:
 
 -Nombre de joueurs : 1
 
+-Type de graphisme : 2D, vue d'en haut, pas de srolling
+
+-Nombre de niveaux : 3
+
+-Système de points et/ou de vies : Chronomètre et 3 vies 
+
 -
