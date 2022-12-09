@@ -21,7 +21,9 @@ Cahier des charges:
   
 -Existence et le comportement de PNJ : Sbires qui attaquent le personnage au corps à corps
   
--Présence de musique 
+-Présence de musique : https://youtu.be/1t8B3Sx8X-0
+                       https://youtu.be/e5D2jqSVuZ8
+                       
   
 -Système de projectiles : Le personnage tire des projectiles et esquive des lasers/boules de feu
 
