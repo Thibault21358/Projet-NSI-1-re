@@ -13,15 +13,15 @@ Cahier des charges:
 
 -Type de graphisme : 2D, vue d'en haut, pas de srolling
 
--Nombre de niveaux : 3
+-Nombre de niveaux : 3 ou plus
 
--Système de points et/ou de vies : Minuteur du temps d'un niveau et 1 vie
+-Système de points et/ou de vies : Minuteur du temps d'un niveau (de plus en plus difficiles en fonction du temps) et 1 vie
 
 -Les niveaux sont de difficultés croissantes
   
 -Existence et le comportement de PNJ : Sbires qui attaquent le personnage au corps à corps
   
--Présence de musique
+-Présence de musique 
   
 -Système de projectiles : Le personnage tire des projectiles et esquive des lasers/boules de feu
 
