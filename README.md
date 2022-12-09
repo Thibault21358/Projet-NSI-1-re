@@ -6,4 +6,8 @@ Cahier des charges:
 
 -Exemple de jeu existant : LOL Dodge Game ( https://loldodgegame.com/dodge/ ) et Mario danger bob omb danger ![image](https://user-images.githubusercontent.com/119674954/206699870-22b373e7-b407-48c8-94a5-0ef7cfd662aa.png)
 
--Type de contrôle utilisé :
+-Type de contrôle utilisé : 
+
+-Nombre de joueurs : 1
+
+-
