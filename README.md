@@ -25,4 +25,4 @@ Cahier des charges:
    
 -Système de projectiles: Le personnage tire des projectiles et esquive des lasers/boules de feu
 
--Personnage: Bob-omb 
+-Personnage: Cup-Head
