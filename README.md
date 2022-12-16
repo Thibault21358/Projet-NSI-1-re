@@ -37,9 +37,9 @@ Planning prévisionnel pour le projet sur 15 semaines:
 
 -Vendredi 16 décembre : Création du planning prévisionnel pour le projet sur 15 semaines(Louca et Thibault : 1h20), commencement du code déplacement personnage(Quentin et Andréa : 2h), poursuite de la création des personnages et du décor (Louca et Thibault : 40min).
 
--Vendredi 6 janvier : Début code minuteur et gestion de la vie du personnage(Louca : 2h), commencement code déplacement sbires adverses(Thibault : 2h), poursuite code déplacement personnage(Andréa et Quentin : 2h).
+-Vendredi 6 janvier : Début code minuteur et gestion de la vie du personnage(Louca : 2h), début code déplacement sbires adverses(Thibault : 2h), poursuite code déplacement personnage(Andréa et Quentin : 2h).
 
--Vendredi 13 janvier : Poursuite code minuteur et gestion de la vie du personnage(Louca : 2h), poursuite code déplacement sbires adverses(Thibault : 2h), poursuite code tir personnage (Andréa et Quentin : 2h).
+-Vendredi 13 janvier : Poursuite code minuteur et gestion de la vie du personnage(Louca : 2h), poursuite code déplacement sbires adverses(Thibault : 2h), début code tir personnage (Andréa et Quentin : 2h).
 
 -Vendredi 20 janvier : Poursuite code tir personnage (Andréa et Quentin : 2h), début création menu principal(Louca et Thibault : 2h) 
 
