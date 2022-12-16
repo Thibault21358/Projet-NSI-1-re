@@ -26,3 +26,7 @@ Cahier des charges:
 -Système de projectiles: Le personnage tire des projectiles et esquive des lasers/boules de feu
 
 -Personnage: Cup-Head
+
+Planning prévisionnel pour le projet sur 15 semaines:
+
+-
