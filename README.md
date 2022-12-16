@@ -28,7 +28,7 @@ Cahier des charges:
 
 -Personnage: Cup-Head
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
 Planning prévisionnel pour le projet sur 15 semaines:
 
 -Vendredi 2 décembre : Constitution des groupes, création du dépôt Github et envoi de l'adresse par Atrium, composition du groupe et premières pistes de sujets avec brèves descriptions (1 phrase) dans le readme du dépôt Github. 
