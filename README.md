@@ -37,25 +37,25 @@ Planning prévisionnel pour le projet sur 15 semaines:
 
 -Vendredi 16 décembre : Création du planning prévisionnel pour le projet sur 15 semaines(Louca et Thibault : 1h20), commencement du code déplacement personnage(Quentin et Andréa : 2h), poursuite de la création des personnages et du décor (Louca et Thibault : 40min).
 
--Vendredi 6 janvier : Code minuteur et gestion de la vie du personnage(Louca : 2h), commencement code déplacement sbires adverses(Thibault : 2h), poursuite code déplacement personnage(Andréa et Quentin : 2h).
+-Vendredi 6 janvier : Début code minuteur et gestion de la vie du personnage(Louca : 2h), commencement code déplacement sbires adverses(Thibault : 2h), poursuite code déplacement personnage(Andréa et Quentin : 2h).
 
 -Vendredi 13 janvier : Poursuite code minuteur et gestion de la vie du personnage(Louca : 2h), poursuite code déplacement sbires adverses(Thibault : 2h), poursuite code tir personnage (Andréa et Quentin : 2h).
 
--Vendredi 20 janvier : Poursuite code tir personnage (Andréa et Quentin : 2h), 
+-Vendredi 20 janvier : Poursuite code tir personnage (Andréa et Quentin : 2h), début création menu principal(Louca et Thibault : 2h) 
 
--Vendredi 27 janvier :
+-Vendredi 27 janvier : Poursuite création menu principal(Louca et Thibault : 2h), début code des boules de feu/laser (Quentin et Andréa : 2h)
 
--Vendredi 3 février : 
+-Vendredi 3 février : Poursuite code des boules de feu/laser(Quentin et Andréa : 2h), poursuite création menu principal(Louca et Thibault : 2h)  
 
--Vendredi 10 février : 
+-Vendredi 10 février : Début création des niveaux(Quentin et Andréa : 2h), début création des crédits apparaissant à la fin du jeu(Louca et Thibault : 2h) 
 
--Vendredi 3 mars : 
+-Vendredi 3 mars :  Poursuite création des niveaux(Quentin et Andréa : 2h), poursuite création des crédits apparaissant à la fin du jeu(Louca et Thibault : 2h) 
 
--Vendredi 10 mars : 
+-Vendredi 10 mars : Poursuite création des niveaux(Quentin et Andréa : 2h),
 
 -Vendredi 17 mars : 
 
--Vendredi 24 mars : 
+-Vendredi 24 mars : Finalisation du projet et correction des bugs.(Andréa, Quentin, Louca et Thibault : 2h).
 
 -Vendredi 31 mars : Finalisation du projet et correction des bugs.(Andréa, Quentin, Louca et Thibault : 2h).
 
