@@ -51,9 +51,9 @@ Planning prévisionnel pour le projet sur 15 semaines:
 
 -Vendredi 3 mars :  Poursuite création des niveaux(Quentin et Andréa : 2h), poursuite création des crédits apparaissant à la fin du jeu(Louca et Thibault : 2h) 
 
--Vendredi 10 mars : Poursuite création des niveaux(Quentin et Andréa : 2h),
+-Vendredi 10 mars : Poursuite création des niveaux(Quentin, Andréa, Louca et Thibault : 2h)
 
--Vendredi 17 mars : 
+-Vendredi 17 mars : Finalisation du projet et correction des bugs.(Andréa, Quentin, Louca et Thibault : 2h).
 
 -Vendredi 24 mars : Finalisation du projet et correction des bugs.(Andréa, Quentin, Louca et Thibault : 2h).
 
