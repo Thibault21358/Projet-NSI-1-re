@@ -3,8 +3,6 @@ pyxel.init(256,256,title="Fuego Arena",fps=60,)
 perso_x=128
 perso_y=128
 vies=3
-projectiles_x=0
-projectiles_y=0
 projectiles_liste=[]
 
 def perso_deplacement(x,y):
@@ -22,33 +20,31 @@ def perso_deplacement(x,y):
             y = y - 1
     return x, y
 
-def projectiles_creationhaut(projectiles_liste):
-    if (pyxel.frame_count % 60 == 0):
-        projectiles_liste.append([random.randint(0,248),0])
-    return projectiles_liste
-
-
-def projectiles_deplacementhaut(projectiles_liste):
-    for p in projectiles_liste:
-        p[1] += 1
-        if  p[1]>256:
-            projectiles_liste.remove(p)
-    return projectiles_liste
-
-
-
+def projectiles_creation(projectiles_liste):
+    projectiles_liste=[direction=random.randint(0,3),proj=[direction, random.randint(0,248),0],pos_depart=random.randint(0,248)]
+    
+def projectiles_deplacement(projectiles_liste):
+    for projectile in projectiles_liste:
+        if projectile[0]==0:
+            projectile[2]+=1
+        elif projectile[0]==1:
+            projectile[1]+=(-1)
+        elif projectile[0]==2:
+            projectile[2]+=1
+        elif projectile[0]==3:
+            projectile[1]+=(-1)
+    return projectile_liste
+    
 def update():
     global perso_x, perso_y, projectiles_liste
     perso_x, perso_y = perso_deplacement(perso_x, perso_y)
-    projectiles_liste=projectiles_creationhaut(projectiles_liste)
-    projectiles_liste = projectiles_deplacementhaut(projectiles_liste)
-
+    projectiles_liste=projectiles_creation(projectiles_liste)
+    projectiles_liste = projectiles_deplacement(projectiles_liste)
     
 def draw():
     pyxel.cls(0)
     pyxel.rect(perso_x, perso_y, 8, 8, 1)
-    for pro in projectiles_liste:
-        pyxel.rect(pro[0], pro[1], 8, 8, 8)
-    
+    for p in projectiles_liste:
+        pyxel.rect(p[0], p[1], 8, 8, 8)
     
 pyxel.run(update, draw)
