@@ -1,0 +1,118 @@
+import pyxel, random
+pyxel.init(256, 256, title="Fuego Arena")
+vaisseau_x = 120
+vaisseau_y = 120
+vies = 4
+vitesse = 2
+tirs_liste = []
+ennemis_liste = []
+explosions_liste = []
+boosts_liste = []
+pyxel.load("res.pyxres")
+projectiles_liste=[]
+
+def vaisseau_deplacement(x, y):
+    if pyxel.btn(pyxel.KEY_RIGHT):
+        if (x < 240) :
+            x = x + vitesse
+    if pyxel.btn(pyxel.KEY_LEFT):
+        if (x > -3) :
+            x = x - vitesse
+    if pyxel.btn(pyxel.KEY_DOWN):
+        if (y < 238) :
+            y = y + vitesse
+    if pyxel.btn(pyxel.KEY_UP):
+        if (y > 1) :
+            y = y - vitesse
+    return x, y
+    
+def boosts_creation(boosts_liste):
+    if (pyxel.frame_count % 400 == 0):
+        boosts_liste.append([random.randint(48, 216), random.randint(48, 216)])
+    return boosts_liste
+    
+def vaisseau_boost(vitesse):
+    for boost in boosts_liste:
+        if boost[0] <= vaisseau_x+8 and boost[1] <= vaisseau_y+8 and boost[0]+8 >= vaisseau_x and boost[1]+8 >= vaisseau_y:
+            boosts_liste.remove(boost)
+            vitesse += 5
+    if (pyxel.frame_count % 60 == 0 and vitesse > 5):
+        vitesse -= 5
+    return vitesse
+    
+def ennemis_creation(ennemis_liste):
+    if (pyxel.frame_count % 30 == 0):
+        ennemis_liste.append([random.randint(0, 248), 0])
+    return ennemis_liste
+
+def ennemis_deplacement(ennemis_liste):
+    for ennemi in ennemis_liste:
+        ennemi[1] += 2
+        if  ennemi[1]>256:
+            ennemis_liste.remove(ennemi)
+    return ennemis_liste
+    
+def vaisseau_suppression(vies):
+    for ennemi in ennemis_liste:
+        if ennemi[0] <= vaisseau_x+8 and ennemi[1] <= vaisseau_ +8 and ennemi[0]+8 >= vaisseau_x and ennemi[1]+8 >= vaisseau_y:
+                ennemis_liste.remove(ennemi)
+                vies -= 1
+        explosions_creation(vaisseau_x, vaisseau_y)
+    return vies
+    
+def explosions_creation(x, y):
+    explosions_liste.append([x, y, 0])
+    
+def explosions_animation():
+    for explosion in explosions_liste:
+        explosion[2] +=1
+        if explosion[2] == 12:
+            explosions_liste.remove(explosion)   
+            
+def projectiles_creation(projectiles_liste):
+    direction=random.randint(0,3)
+    if direction == 0:
+        projectiles_liste=[direction, random.randint(0,248),0]
+    if direction == 1:
+        projectiles_liste=[direction,248,random.randint(0,248)]
+    if direction == 2:
+        projectiles_liste=[direction,random.randint(0,248),248]
+    if direction ==3:
+        projectiles_liste=[direction,0,random.randint(0,248)]
+        
+def projectiles_deplacement(projectiles_liste):
+    for projectile in projectiles_liste:
+        if projectile[0]==0:
+            projectile[2]+=1
+        elif projectile[0]==1:
+            projectile[1]+=(-1)
+        elif projectile[0]==2:
+            projectile[2]+=(-1)
+        elif projectile[0]==3:
+            projectile[1]+=1
+    return projectiles_liste
+
+def update():
+    global vaisseau_x, vaisseau_y, tirs_liste, ennemis_liste, vies, explosions_liste, boosts_liste, vitesse
+    perso_x, perso_y = perso_deplacement(perso_x, perso_y)
+    projectiles_liste=projectiles_creation(projectiles_liste)
+    projectiles_liste = projectiles_deplacement(projectiles_liste)
+    
+def draw():
+    pyxel.cls(0)
+    pyxel.rect(perso_x, perso_y, 8, 8, 1)
+    for p in projectiles_liste:
+        pyxel.rect(p[0], p[1], 8, 8, 8)
+    if vies > 0:      
+        pyxel.text(5,5, 'VIES:'+ str(vies), 7)
+        for boost in boosts_liste:
+            pyxel.blt(boost[0], boost[1], 0, 64, 0, 16, 16,6)
+        for ennemi in ennemis_liste:
+            pyxel.blt(ennemi[0], ennemi[1], 0, 48, 0, 16, 16,0)
+        pyxel.blt(vaisseau_x, vaisseau_y, 0, 15, 0, 16, 16,0)
+        for explosion in explosions_liste:
+            pyxel.circb(explosion[0]+4, explosion[1]+4, 2*(explosion[2]//4), 8+explosion[2]%3)
+    else:
+        pyxel.text(50,64, 'GAME OVER', 7)
+    
+pyxel.run(update, draw)
