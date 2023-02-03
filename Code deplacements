@@ -21,8 +21,16 @@ def perso_deplacement(x,y):
     return x, y
 
 def projectiles_creation(projectiles_liste):
-    projectiles_liste=[direction=random.randint(0,3),proj=[direction, random.randint(0,248),0],pos_depart=random.randint(0,248)]
-    
+    direction=random.randint(0,3)
+    if direction == 0:
+        projectiles_liste.append([direction, random.randint(0,248),0])
+    if direction == 1:
+        projectiles_liste.append([direction,248,random.randint(0,248)])
+    if direction == 2:
+        projectiles_liste.append([direction,random.randint(0,248),248])
+    if direction ==3:
+        projectiles_liste.append([direction,0,random.randint(0,248)])
+        
 def projectiles_deplacement(projectiles_liste):
     for projectile in projectiles_liste:
         if projectile[0]==0:
@@ -30,21 +38,21 @@ def projectiles_deplacement(projectiles_liste):
         elif projectile[0]==1:
             projectile[1]+=(-1)
         elif projectile[0]==2:
-            projectile[2]+=1
+            projectile[2]+=(-1)
         elif projectile[0]==3:
-            projectile[1]+=(-1)
-    return projectile_liste
+            projectile[1]+=1
+    return projectiles_liste
     
 def update():
     global perso_x, perso_y, projectiles_liste
     perso_x, perso_y = perso_deplacement(perso_x, perso_y)
-    projectiles_liste=projectiles_creation(projectiles_liste)
-    projectiles_liste = projectiles_deplacement(projectiles_liste)
+    projectiles_creation(projectiles_liste)
+    projectiles_liste=projectiles_deplacement(projectiles_liste)
     
 def draw():
     pyxel.cls(0)
     pyxel.rect(perso_x, perso_y, 8, 8, 1)
     for p in projectiles_liste:
-        pyxel.rect(p[0], p[1], 8, 8, 8)
+        pyxel.rect(p[1], p[2], 8, 8, 8)
     
 pyxel.run(update, draw)
