@@ -158,5 +158,5 @@ def draw():
 
     if Vies <= 0:
         SceneNiveau = 2
-        
+       
 pyxel.run(update, draw)
