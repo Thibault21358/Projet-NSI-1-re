@@ -1,13 +1,18 @@
 import pyxel, random
-pyxel.init(256, 256, title="Nuit du c0de")
-
+pyxel.init(256,256,title="Fuego Arena",fps=60,)
+perso_x=128
+perso_y=128
 Bomberman = [120,120]
 SceneNiveau =0
-Vies = 4
-Vitesse = 2
-BombeListe = []
+Vies = 3
+Vitesse = 1
+bombes_liste = []
 ExplosionsListe = []
 BoostsListe = []
+Score = 0
+Vie1 = [0,0]
+Vie2 = [16,0]
+Vie3 = [32,0]
 pyxel.load("res.pyxres")
 
 def attendre_début():
@@ -18,23 +23,23 @@ def attendre_début():
 def Recommencer_niveau():
     global SceneNiveau, Vies
     if SceneNiveau == 2 and  pyxel.btn(pyxel.KEY_RETURN):
-        Vies = 4
+        Vies = 3
         pyxel.cls(0)
         SceneNiveau = 0
 
 def bomberman_deplacement(bomberman):
     x = bomberman[0]
     y = bomberman[1]
-    if pyxel.btn(pyxel.KEY_RIGHT):
+    if pyxel.btn(pyxel.KEY_RIGHT) or pyxel.btn(pyxel.KEY_D):
         if (x < 240) :
             x = x + Vitesse
-    if pyxel.btn(pyxel.KEY_LEFT):
+    if pyxel.btn(pyxel.KEY_LEFT) or pyxel.btn(pyxel.KEY_Q):
         if (x > -3) :
             x = x - Vitesse
-    if pyxel.btn(pyxel.KEY_DOWN):
+    if pyxel.btn(pyxel.KEY_DOWN) or pyxel.btn(pyxel.KEY_S):
         if (y < 238) :
             y = y + Vitesse
-    if pyxel.btn(pyxel.KEY_UP):
+    if pyxel.btn(pyxel.KEY_UP) or pyxel.btn(pyxel.KEY_Z):
         if (y > 1) :
             y = y - Vitesse
     bomberman[0] = x
@@ -55,22 +60,34 @@ def bomberman_boost(vitesse):
         vitesse -= 5
     return vitesse
     
-def bombes_creation(bombe_liste):
-    if (pyxel.frame_count % 30 == 0):
-        bombe_liste.append([random.randint(0, 248), 0])
-    return bombe_liste
+def bombes_creation(bombes_liste):
+    direction=random.randint(0,3)
+    if (pyxel.frame_count % 25 == 0):
+        if direction == 0:
+            bombes_liste.append([direction, random.randint(0,248),0])
+        if direction == 1:
+            bombes_liste.append([direction,248,random.randint(0,248)])
+        if direction == 2:
+            bombes_liste.append([direction,random.randint(0,248),248])
+        if direction ==3:
+            bombes_liste.append([direction,0,random.randint(0,248)])
 
-def bombes_deplacement(bombe_liste):
-    for bombe in bombe_liste:
-        bombe[1] += 2
-        if  bombe[1]>256:
-            bombe_liste.remove(bombe)
-    return bombe_liste
-
+def bombes_deplacement(bombes_liste):
+    for bombes in bombes_liste:
+        if bombes[0]==0:
+            bombes[2]+=1
+        elif bombes[0]==1:
+            bombes[1]+=(-1)
+        elif bombes[0]==2:
+            bombes[2]+=(-1)
+        elif bombes[0]==3:
+            bombes[1]+=1
+    return bombes_liste
+    
 def detection_collision(vies):
-    for bombe in BombeListe:
-        if bombe[0] <= Bomberman[0]+8 and bombe[1] <= Bomberman[1] +8 and bombe[0]+8 >= Bomberman[0] and bombe[1]+8 >= Bomberman[1]:
-            BombeListe.remove(bombe)
+    for bombe in bombes_liste:
+        if bombe[1] <= Bomberman[0]+8 and bombe[2] <= Bomberman[1] +8 and bombe[1]+8 >= Bomberman[0] and bombe[2]+8 >= Bomberman[1]:
+            bombes_liste.remove(bombe)
             vies -= 1
             explosions_creation(Bomberman[0], Bomberman[1])
     return vies
@@ -83,36 +100,56 @@ def explosions_animation():
     for explosion in ExplosionsListe:
         explosion[2] +=1
         if explosion[2] == 12:
-            ExplosionsListe.remove(explosion)                
+            ExplosionsListe.remove(explosion)  
+
+def Score_timer(Score):
+    if SceneNiveau== 1 :
+        if (pyxel.frame_count % 5== 0):
+            Score += 1
+        return Score
 
 def update():
-    global Bomberman, BombeListe, Vies, ExplosionsListe, BoostsListe, Vitesse, SceneNiveau
+    global perso_x, perso_y, Bomberman, bombes_liste, Vies, ExplosionsListe, BoostsListe, Vitesse, SceneNiveau, Score_timer, Score
     if SceneNiveau == 0:
         attendre_début()
     elif SceneNiveau == 1:
         Bomberman = bomberman_deplacement(Bomberman)
-        BombeListe = bombes_creation(BombeListe)
-        BombeListe = bombes_deplacement(BombeListe)
+        bombes_creation(bombes_liste)
+        bombes_liste = bombes_deplacement(bombes_liste)
         BoostsListe = boosts_creation(BoostsListe)
         Vitesse = bomberman_boost(Vitesse)
         Vies = detection_collision(Vies)
         explosions_animation()
+        Score = Score_timer(Score)
     elif SceneNiveau == 2:
         Recommencer_niveau()
         
 def draw():
     global SceneNiveau
     pyxel.cls(0)
+    pyxel.rect(perso_x, perso_y, 8, 8, 1)
     if SceneNiveau == 0:
         pyxel.bltm(0,0,0,512,0,255,255)
         pyxel.text(99, 137, "- PRESS ENTER -", 0)
     elif SceneNiveau == 1:
         pyxel.bltm(0,0,0,0,0,255,255)
-        pyxel.text(5,5, 'Vies:'+ str(Vies), 7)
+        if Vies == 3:
+            pyxel.blt(Vie1[0], Vie1[1], 0, 16, 64, 16, 16,0)
+            pyxel.blt(Vie2[0], Vie2[1], 0, 16, 64, 16, 16,0)
+            pyxel.blt(Vie3[0], Vie3[1], 0, 16, 64, 16, 16,0)
+        elif Vies == 2:
+            pyxel.blt(Vie1[0], Vie1[1], 0, 16, 64, 16, 16,0)
+            pyxel.blt(Vie2[0], Vie2[1], 0, 16, 64, 16, 16,0)
+            pyxel.blt(Vie3[0], Vie3[1], 0, 0, 64, 16, 16,0)
+        elif Vies == 1:
+            pyxel.blt(Vie1[0], Vie1[1], 0, 16, 64, 16, 16,0)
+            pyxel.blt(Vie2[0], Vie2[1], 0, 0, 64, 16, 16,0)
+            pyxel.blt(Vie3[0], Vie3[1], 0, 0, 64, 16, 16,0)
+        pyxel.text(210, 5, "Score: "+ str(Score), 0)
         for boost in BoostsListe:
             pyxel.blt(boost[0], boost[1], 0, 64, 0, 16, 16,6)
-        for bombe in BombeListe:
-            pyxel.blt(bombe[0], bombe[1], 0, 48, 0, 16, 16,0)
+        for bombe in bombes_liste:
+            pyxel.blt(bombe[1], bombe[2], 0, 48, 0, 16, 16,0)
         pyxel.blt(Bomberman[0], Bomberman[1], 0, 15, 0, 16, 16,0)
         for explosion in ExplosionsListe:
             pyxel.circb(explosion[0]+4, explosion[1]+4, 2*(explosion[2]//4), 8+explosion[2]%3)
@@ -121,5 +158,5 @@ def draw():
 
     if Vies <= 0:
         SceneNiveau = 2
-
+        
 pyxel.run(update, draw)
