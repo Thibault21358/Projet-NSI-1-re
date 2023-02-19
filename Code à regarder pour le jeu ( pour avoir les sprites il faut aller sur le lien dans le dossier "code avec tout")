@@ -62,15 +62,106 @@ def bomberman_boost(vitesse):
     
 def bombes_creation(bombes_liste):
     direction=random.randint(0,3)
-    if (pyxel.frame_count % 25 == 0):
-        if direction == 0:
-            bombes_liste.append([direction, random.randint(0,248),0])
-        if direction == 1:
-            bombes_liste.append([direction,248,random.randint(0,248)])
-        if direction == 2:
-            bombes_liste.append([direction,random.randint(0,248),248])
-        if direction ==3:
-            bombes_liste.append([direction,0,random.randint(0,248)])
+    if Score>0:
+        if (pyxel.frame_count % 50 == 0):
+            if direction == 0:
+                bombes_liste.append([direction, random.randint(0,248),0])
+            if direction == 1:
+                bombes_liste.append([direction,248,random.randint(0,248)])
+            if direction == 2:
+                bombes_liste.append([direction,random.randint(0,248),248])
+            if direction ==3:
+                bombes_liste.append([direction,0,random.randint(0,248)])
+    if Score>200:
+        if (pyxel.frame_count % 48 == 0):
+            if direction == 0:
+                bombes_liste.append([direction, random.randint(0,248),0])
+            if direction == 1:
+                bombes_liste.append([direction,248,random.randint(0,248)])
+            if direction == 2:
+                bombes_liste.append([direction,random.randint(0,248),248])
+            if direction ==3:
+                bombes_liste.append([direction,0,random.randint(0,248)])
+    if Score>400:
+        if (pyxel.frame_count % 45 == 0):
+            if direction == 0:
+                bombes_liste.append([direction, random.randint(0,248),0])
+            if direction == 1:
+                bombes_liste.append([direction,248,random.randint(0,248)])
+            if direction == 2:
+                bombes_liste.append([direction,random.randint(0,248),248])
+            if direction ==3:
+                bombes_liste.append([direction,0,random.randint(0,248)])
+    if Score>600:
+        if (pyxel.frame_count % 44 == 0):
+            if direction == 0:
+                bombes_liste.append([direction, random.randint(0,248),0])
+            if direction == 1:
+                bombes_liste.append([direction,248,random.randint(0,248)])
+            if direction == 2:
+                bombes_liste.append([direction,random.randint(0,248),248])
+            if direction ==3:
+                bombes_liste.append([direction,0,random.randint(0,248)])
+    if Score>1000:
+        if (pyxel.frame_count % 43 == 0):
+            if direction == 0:
+                bombes_liste.append([direction, random.randint(0,248),0])
+            if direction == 1:
+                bombes_liste.append([direction,248,random.randint(0,248)])
+            if direction == 2:
+                bombes_liste.append([direction,random.randint(0,248),248])
+            if direction ==3:
+                bombes_liste.append([direction,0,random.randint(0,248)])  
+    if Score>2000:
+        if (pyxel.frame_count % 42 == 0):
+            if direction == 0:
+                bombes_liste.append([direction, random.randint(0,248),0])
+            if direction == 1:
+                bombes_liste.append([direction,248,random.randint(0,248)])
+            if direction == 2:
+                bombes_liste.append([direction,random.randint(0,248),248])
+            if direction ==3:
+                bombes_liste.append([direction,0,random.randint(0,248)])
+    if Score>2100:
+        if (pyxel.frame_count % 41 == 0):
+            if direction == 0:
+                bombes_liste.append([direction, random.randint(0,248),0])
+            if direction == 1:
+                bombes_liste.append([direction,248,random.randint(0,248)])
+            if direction == 2:
+                bombes_liste.append([direction,random.randint(0,248),248])
+            if direction ==3:
+                bombes_liste.append([direction,0,random.randint(0,248)])
+    if Score>2200:
+        if (pyxel.frame_count % 40 == 0):
+            if direction == 0:
+                bombes_liste.append([direction, random.randint(0,248),0])
+            if direction == 1:
+                bombes_liste.append([direction,248,random.randint(0,248)])
+            if direction == 2:
+                bombes_liste.append([direction,random.randint(0,248),248])
+            if direction ==3:
+                bombes_liste.append([direction,0,random.randint(0,248)])
+    if Score>2300:
+        if (pyxel.frame_count % 39 == 0):
+            if direction == 0:
+                bombes_liste.append([direction, random.randint(0,248),0])
+            if direction == 1:
+                bombes_liste.append([direction,248,random.randint(0,248)])
+            if direction == 2:
+                bombes_liste.append([direction,random.randint(0,248),248])
+            if direction ==3:
+                bombes_liste.append([direction,0,random.randint(0,248)])
+    if Score>2400:
+        if (pyxel.frame_count % 38 == 0):
+            if direction == 0:
+                bombes_liste.append([direction, random.randint(0,248),0])
+            if direction == 1:
+                bombes_liste.append([direction,248,random.randint(0,248)])
+            if direction == 2:
+                bombes_liste.append([direction,random.randint(0,248),248])
+            if direction ==3:
+                bombes_liste.append([direction,0,random.randint(0,248)])
 
 def bombes_deplacement(bombes_liste):
     for bombes in bombes_liste:
@@ -158,5 +249,5 @@ def draw():
 
     if Vies <= 0:
         SceneNiveau = 2
-       
+        
 pyxel.run(update, draw)
