@@ -21,13 +21,17 @@ def attendre_début():
         SceneNiveau = 1
     
 def Recommencer_niveau():
-    global SceneNiveau, Vies
+    global Vies, Score, SceneNiveau, Bomberman, bombes_liste 
     if SceneNiveau == 2 and  pyxel.btn(pyxel.KEY_RETURN):
         Vies = 3
+        Score=0
+        SceneNiveau=1
+        Bomberman=[120,120]
+        bombes_liste=[]
         pyxel.cls(0)
-        SceneNiveau = 0
-
+        
 def bomberman_deplacement(bomberman):
+    """Cette fonction permet à l'utilisateur de déplacer le personnage."""
     x = bomberman[0]
     y = bomberman[1]
     if pyxel.btn(pyxel.KEY_RIGHT) or pyxel.btn(pyxel.KEY_D):
@@ -47,11 +51,13 @@ def bomberman_deplacement(bomberman):
     return bomberman
     
 def boosts_creation(boosts_liste):
+    """Cette fonction créé un boost qui s'affiche sous la forme d'un pixel art d'une botte."""
     if (pyxel.frame_count % 400 == 0 and len(boosts_liste) <3):
         boosts_liste.append([random.randint(48, 216), random.randint(48, 216)])
     return boosts_liste
     
 def bomberman_boost(vitesse):
+    """Cette fonction permet que lorsque le personnage va sur le pixel art de la botte, il y a un boost pendant 3s. """
     for boost in BoostsListe:
         if boost[0] <= Bomberman[0]+8 and boost[1] <= Bomberman[1]+8 and boost[0]+8 >= Bomberman[0] and boost[1]+8 >= Bomberman[1]:
             BoostsListe.remove(boost)
@@ -61,6 +67,7 @@ def bomberman_boost(vitesse):
     return vitesse
     
 def bombes_creation(bombes_liste):
+    """Cette fonction permet la création aléatoire des bombes de chaque côté de l'écran."""
     direction=random.randint(0,3)
     if Score>0:
         if (pyxel.frame_count % 50 == 0):
@@ -164,6 +171,7 @@ def bombes_creation(bombes_liste):
                 bombes_liste.append([direction,0,random.randint(0,248)])
 
 def bombes_deplacement(bombes_liste):
+    """Cette fonction permet que après la création des bombes, elles se déplacent."""
     for bombes in bombes_liste:
         if bombes[0]==0:
             bombes[2]+=1
@@ -176,6 +184,7 @@ def bombes_deplacement(bombes_liste):
     return bombes_liste
     
 def detection_collision(vies):
+    """Cette fonction permet que lorsqu'il y a une collision, le joueur perde une vie."""
     for bombe in bombes_liste:
         if bombe[1] <= Bomberman[0]+8 and bombe[2] <= Bomberman[1] +8 and bombe[1]+8 >= Bomberman[0] and bombe[2]+8 >= Bomberman[1]:
             bombes_liste.remove(bombe)
@@ -184,9 +193,11 @@ def detection_collision(vies):
     return vies
     
 def explosions_creation(x, y):
+    """Cette fonction permet la création des explosions."""
     ExplosionsListe.append([x, y, 0])
     
 def explosions_animation():
+    """Cette fonction fait que lorsqu'une explosion est créé, il y a une certaine animation."""
     global ExplosionsListe
     for explosion in ExplosionsListe:
         explosion[2] +=1
@@ -194,6 +205,7 @@ def explosions_animation():
             ExplosionsListe.remove(explosion)  
 
 def Score_timer(Score):
+    """Cette fonction permet de créer et de rajouter des points à score au fur et à mesure du temps."""
     if SceneNiveau== 1 :
         if (pyxel.frame_count % 5== 0):
             Score += 1
@@ -212,6 +224,7 @@ def update():
         Vies = detection_collision(Vies)
         explosions_animation()
         Score = Score_timer(Score)
+        
     elif SceneNiveau == 2:
         Recommencer_niveau()
         
@@ -222,6 +235,7 @@ def draw():
     if SceneNiveau == 0:
         pyxel.bltm(0,0,0,512,0,255,255)
         pyxel.text(99, 137, "- PRESS ENTER -", 0)
+        pyxel.text(106, 130, "Fuego Arena", pyxel.frame_count % 9)
     elif SceneNiveau == 1:
         pyxel.bltm(0,0,0,0,0,255,255)
         if Vies == 3:
@@ -246,7 +260,6 @@ def draw():
             pyxel.circb(explosion[0]+4, explosion[1]+4, 2*(explosion[2]//4), 8+explosion[2]%3)
     elif SceneNiveau == 2:
         pyxel.bltm(0,0,0,256,0,255,255)
-
     if Vies <= 0:
         SceneNiveau = 2
         
