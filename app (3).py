@@ -87,6 +87,7 @@ def bomberman_boost(vitesse):
         if boost[0] <= Bomberman[0]+8 and boost[1] <= Bomberman[1]+8 and boost[0]+8 >= Bomberman[0] and boost[1]+8 >= Bomberman[1]:
             BoostsListe.remove(boost)
             vitesse += 5
+            pyxel.playm(0, loop=False)
     if (pyxel.frame_count % 60 == 0 and vitesse > 5):
         vitesse -= 5
     return vitesse
@@ -104,7 +105,7 @@ def bombes_creation(bombes_liste):
                 bombes_liste.append([direction,random.randint(0,248),248])
             if direction ==3:
                 bombes_liste.append([direction,0,random.randint(0,248)])
-    if Score>500:
+    if Score>100:
         if (pyxel.frame_count % 46 == 0):
             if direction == 0:
                 bombes_liste.append([direction, random.randint(0,248),0])
@@ -114,7 +115,7 @@ def bombes_creation(bombes_liste):
                 bombes_liste.append([direction,random.randint(0,248),248])
             if direction ==3:
                 bombes_liste.append([direction,0,random.randint(0,248)])
-    if Score>1000:
+    if Score>200:
         if (pyxel.frame_count % 42== 0):
             if direction == 0:
                 bombes_liste.append([direction, random.randint(0,248),0])
@@ -223,21 +224,21 @@ def draw():
         for bombe in bombes_liste:
             pyxel.blt(bombe[1], bombe[2], 0, 48, 0, 16, 16,0)
         if perso==1:
-            pyxel.blt(Bomberman[0], Bomberman[1], 0, 15, 0, 16, 16,0)
+            pyxel.blt(Bomberman[0], Bomberman[1], 0, 16, 0, 16, 16,12)
         if perso==2:
-            pyxel.blt(Bomberman[0], Bomberman[1], 0, 0, 80, 16, 16,5)
+            pyxel.blt(Bomberman[0], Bomberman[1], 0, 0, 80, 16, 16,10)
         if perso==3:
-            pyxel.blt(Bomberman[0], Bomberman[1], 0, 16, 80, 16, 16,7)
+            pyxel.blt(Bomberman[0], Bomberman[1], 0, 16, 80, 16, 16,8)
         if perso==4:
-            pyxel.blt(Bomberman[0], Bomberman[1], 0, 32, 80, 16, 16,0)
+            pyxel.blt(Bomberman[0], Bomberman[1], 0, 32, 80, 16, 16,15)
         if perso==5:
-            pyxel.blt(Bomberman[0], Bomberman[1], 0, 48, 80, 16, 16,0)
+            pyxel.blt(Bomberman[0], Bomberman[1], 0, 48, 80, 16, 16,2)
         if perso==6:
-            pyxel.blt(Bomberman[0], Bomberman[1], 0, 64, 80, 16, 16,4)
+            pyxel.blt(Bomberman[0], Bomberman[1], 0, 64, 80, 16, 16,5)
         if perso==7:
             pyxel.blt(Bomberman[0], Bomberman[1], 0, 80, 80, 16, 16,0)
         if perso==8:
-            pyxel.blt(Bomberman[0], Bomberman[1], 0, 96, 80, 16, 16,11)
+            pyxel.blt(Bomberman[0], Bomberman[1], 0, 96, 80, 16, 16,9)
         
         for explosion in ExplosionsListe:
             pyxel.circb(explosion[0]+4, explosion[1]+4, 2*(explosion[2]//4), 8+explosion[2]%3)
