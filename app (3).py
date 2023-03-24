@@ -65,7 +65,7 @@ def bomberman_deplacement(bomberman):
     if pyxel.btn(pyxel.KEY_LEFT) or pyxel.btn(pyxel.KEY_Q):
         if (x > -3) :
             x = x - Vitesse
-    if pyxel.btn(pyxel.KEY_DOWN) or pyxel.btn(pyxel.KEY_S):
+    if pyxel.btn(pyxel.KEY_DOWN) or pyxel.btn(pyxel.KEY_S): 
         if (y < 238) :
             y = y + Vitesse
     if pyxel.btn(pyxel.KEY_UP) or pyxel.btn(pyxel.KEY_Z):
