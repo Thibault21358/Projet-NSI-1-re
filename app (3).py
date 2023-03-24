@@ -1,5 +1,7 @@
 import pyxel, random
 pyxel.init(256,256,title="Fuego Arena",fps=60,)
+musique_on=False
+boost_on=False
 perso_x=128
 perso_y=128
 perso =1
@@ -45,7 +47,7 @@ def select_character():
 
     
 def Recommencer_niveau():
-    global Vies, Score, SceneNiveau, Bomberman, bombes_liste,BoostsListe 
+    global Vies, Score, SceneNiveau, Bomberman, bombes_liste,BoostsListe
     if SceneNiveau == 2 and  pyxel.btn(pyxel.KEY_RETURN):
         Vies = 3
         Score=0
@@ -65,7 +67,7 @@ def bomberman_deplacement(bomberman):
     if pyxel.btn(pyxel.KEY_LEFT) or pyxel.btn(pyxel.KEY_Q):
         if (x > -3) :
             x = x - Vitesse
-    if pyxel.btn(pyxel.KEY_DOWN) or pyxel.btn(pyxel.KEY_S): 
+    if pyxel.btn(pyxel.KEY_DOWN) or pyxel.btn(pyxel.KEY_S):
         if (y < 238) :
             y = y + Vitesse
     if pyxel.btn(pyxel.KEY_UP) or pyxel.btn(pyxel.KEY_Z):
@@ -87,9 +89,11 @@ def bomberman_boost(vitesse):
         if boost[0] <= Bomberman[0]+8 and boost[1] <= Bomberman[1]+8 and boost[0]+8 >= Bomberman[0] and boost[1]+8 >= Bomberman[1]:
             BoostsListe.remove(boost)
             vitesse += 5
+            boost_on=True
             pyxel.playm(0, loop=False)
     if (pyxel.frame_count % 60 == 0 and vitesse > 5):
         vitesse -= 5
+        boost_on=False
     return vitesse
     
 def bombes_creation(bombes_liste):
@@ -167,8 +171,24 @@ def Score_timer(Score):
             Score += 1
         return Score
 
+def musique():
+    global musique_on, boost_on
+    if SceneNiveau==1 and musique_on==False:
+        pyxel.playm(2,loop=True)
+        if boost_on==True:
+            pyxel.playm(0,loop=False)
+            pyxel.stop()
+            pyxel.playm(2,loop=True)
+        musique_on=True
+    if SceneNiveau==2 and musique_on==True:
+        pyxel.stop()
+        pyxel.playm(1,loop=False)
+        musique_on=False
+
+
 def update():
     global perso_x, perso_y, Bomberman, bombes_liste, Vies, ExplosionsListe, BoostsListe, Vitesse, SceneNiveau, perso, Score_timer, Score
+    musique()
     if SceneNiveau == 0:
         attendre_début()
     elif SceneNiveau == 4:
@@ -184,6 +204,7 @@ def update():
         Score = Score_timer(Score)
     elif SceneNiveau == 2:
         Recommencer_niveau()
+    
         
 def draw():
     global SceneNiveau, perso
@@ -246,6 +267,7 @@ def draw():
         pyxel.bltm(0,0,0,256,0,255,255)
     if Vies <= 0:
         SceneNiveau = 2
-        
+
+
 pyxel.run(update, draw)
 pyxel.quit()
