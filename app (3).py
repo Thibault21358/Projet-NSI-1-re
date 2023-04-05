@@ -91,6 +91,8 @@ def bomberman_boost(vitesse):
             vitesse += 5
             boost_on=True
             pyxel.playm(0, loop=False)
+            if pyxel.playm(0,loop=False):
+                pyxel.playm(2,loop=True)
     if (pyxel.frame_count % 60 == 0 and vitesse > 5):
         vitesse -= 5
         boost_on=False
@@ -178,7 +180,7 @@ def musique():
         if boost_on==True:
             pyxel.playm(0,loop=False)
             pyxel.stop()
-            pyxel.playm(2,loop=True)
+        pyxel.playm(2,loop=True)
         musique_on=True
     if SceneNiveau==2 and musique_on==True:
         pyxel.stop()
@@ -207,7 +209,7 @@ def update():
     
         
 def draw():
-    global SceneNiveau, perso
+    global SceneNiveau, perso, Score_timer
     pyxel.cls(0)
     pyxel.rect(perso_x, perso_y, 8, 8, 1)
     if SceneNiveau == 0:
@@ -226,7 +228,10 @@ def draw():
         pyxel.text(145,237,"Press U",7)
         pyxel.text(212,237,"Press I",7)
     elif SceneNiveau == 1:
-        pyxel.bltm(0,0,0,0,0,255,255)
+        if Score<200:
+            pyxel.bltm(0,0,0,0,0,255,255)
+        else:
+            pyxel.bltm(0,0,0,1023,0,255,255)
         if Vies == 3:
             pyxel.blt(Vie1[0], Vie1[1], 0, 16, 64, 16, 16,0)
             pyxel.blt(Vie2[0], Vie2[1], 0, 16, 64, 16, 16,0)
