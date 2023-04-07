@@ -16,7 +16,7 @@ Score = 0
 Vie1 = [0,0]
 Vie2 = [16,0]
 Vie3 = [32,0]
-pyxel.load("ress.pyxres")
+pyxel.load("tiblafolle.pyxres")
 
 def attendre_début():
     global SceneNiveau
@@ -91,11 +91,10 @@ def bomberman_boost(vitesse):
             vitesse += 5
             boost_on=True
             pyxel.playm(0, loop=False)
-            if pyxel.playm(0,loop=False):
-                pyxel.playm(2,loop=True)
     if (pyxel.frame_count % 60 == 0 and vitesse > 5):
         vitesse -= 5
         boost_on=False
+        pyxel.playm(2,loop=True)
     return vitesse
     
 def bombes_creation(bombes_liste):
@@ -175,18 +174,12 @@ def Score_timer(Score):
 
 def musique():
     global musique_on, boost_on
-    if SceneNiveau==1 and musique_on==False:
-        pyxel.playm(2,loop=True)
-        if boost_on==True:
-            pyxel.playm(0,loop=False)
-            pyxel.stop()
+    if SceneNiveau==1 and musique_on==False and boost_on==False:
         pyxel.playm(2,loop=True)
         musique_on=True
     if SceneNiveau==2 and musique_on==True:
-        pyxel.stop()
         pyxel.playm(1,loop=False)
         musique_on=False
-
 
 def update():
     global perso_x, perso_y, Bomberman, bombes_liste, Vies, ExplosionsListe, BoostsListe, Vitesse, SceneNiveau, perso, Score_timer, Score
