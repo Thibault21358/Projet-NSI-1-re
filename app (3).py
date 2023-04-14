@@ -16,7 +16,7 @@ Score = 0
 Vie1 = [0,0]
 Vie2 = [16,0]
 Vie3 = [32,0]
-pyxel.load("tiblafolle.pyxres")
+pyxel.load("ress.pyxres")
 
 def attendre_début():
     global SceneNiveau
