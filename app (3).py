@@ -21,7 +21,26 @@ pyxel.load("ress.pyxres")
 def attendre_début():
     global SceneNiveau
     if SceneNiveau == 0 and  pyxel.btn(pyxel.KEY_RETURN):
-        SceneNiveau = 4
+        SceneNiveau = 3
+
+def Menu():
+    global SceneNiveau
+    if SceneNiveau == 3:
+        if pyxel.btn(pyxel.KEY_C):
+            SceneNiveau = 5
+            if pyxel.btn(pyxel.KEY_A):
+                SceneNiveau = 3
+        if pyxel.btn(pyxel.KEY_R):
+            SceneNiveau = 6
+            if pyxel.btn(pyxel.KEY_A):
+                SceneNiveau = 3
+        if pyxel.btn(pyxel.KEY_P):
+            SceneNiveau = 4
+
+def credits():
+    global SceneNiveau
+    if pyxel.btn(pyxel.KEY_A):
+        SceneNiveau=3
         
 def select_character():
     global SceneNiveau, perso
@@ -43,9 +62,7 @@ def select_character():
         perso =8
     if SceneNiveau==4 and pyxel.btn(pyxel.KEY_M):
         SceneNiveau = 1
-        
-
-    
+       
 def Recommencer_niveau():
     global Vies, Score, SceneNiveau, Bomberman, bombes_liste,BoostsListe
     if SceneNiveau == 2 and  pyxel.btn(pyxel.KEY_RETURN):
@@ -88,11 +105,11 @@ def bomberman_boost(vitesse):
     for boost in BoostsListe:
         if boost[0] <= Bomberman[0]+8 and boost[1] <= Bomberman[1]+8 and boost[0]+8 >= Bomberman[0] and boost[1]+8 >= Bomberman[1]:
             BoostsListe.remove(boost)
-            vitesse += 5
+            vitesse += 2.5
             boost_on=True
             pyxel.playm(0, loop=False)
-    if (pyxel.frame_count % 60 == 0 and vitesse > 5):
-        vitesse -= 5
+    if (pyxel.frame_count % 115 == 0 and vitesse > 2.5):
+        vitesse -= 2.5
         boost_on=False
         pyxel.playm(2,loop=True)
     return vitesse
@@ -199,6 +216,14 @@ def update():
         Score = Score_timer(Score)
     elif SceneNiveau == 2:
         Recommencer_niveau()
+    elif SceneNiveau == 3:
+        Menu()
+    elif SceneNiveau == 5:
+        credits()
+    elif SceneNiveau == 6:
+        credits()
+    
+
     
         
 def draw():
@@ -209,6 +234,25 @@ def draw():
         pyxel.bltm(0,0,0,512,0,255,255)
         pyxel.text(99, 137, "- PRESS ENTER -", pyxel.frame_count % 9)
         pyxel.text(106, 80, "FUEGO ARENA",4 )
+    elif SceneNiveau == 3:
+        pyxel.bltm(0,0,0,1530,0,255,255)
+        pyxel.text(85,105,"Press C for credits",7)
+        pyxel.text(85,120,"Press R for rules",7)
+        pyxel.text(85,135,"Press P to play",7)
+    elif SceneNiveau == 5:
+        pyxel.bltm(0,0,0,1530,0,255,255)
+        pyxel.text(45,105,"Creators: Quentin, Louca, Andrea, Thibault",7)
+        pyxel.text(85,120,"Musique inspiree de Mario",7)
+        pyxel.text(35,135,"Personnages inspiree de personnages deja existants",7)
+        pyxel.text(85,170,"Press A to return",7)
+    elif SceneNiveau == 6:
+        pyxel.bltm(0,0,0,1530,0,255,255)
+        pyxel.text(15,60,"Pour se deplacer, utilisez les fleches de direction ou les ",7)
+        pyxel.text(45,70,"touches q(gauche),z(haut),d(droite) et s(bas)",7)
+        pyxel.text(0,110,"Les bottes apparaissent frequemment et vous permettent d'aller ",7)
+        pyxel.text(60,120,"plus vite pendant une petite periode",7)
+        pyxel.text(0,90,"Le but est d'esquiver les bombes. Vous n'avez que trois vies!",7)
+        pyxel.text(85,150,"Press A to return",7)           
     elif SceneNiveau == 4:
         pyxel.bltm(0,0,0,768,0,255,255)
         pyxel.text(85,105,"Press M after selection",7)
