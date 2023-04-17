@@ -127,7 +127,7 @@ def bombes_creation(bombes_liste):
                 bombes_liste.append([direction,random.randint(0,248),248])
             if direction ==3:
                 bombes_liste.append([direction,0,random.randint(0,248)])
-    if Score>100:
+    if Score>250:
         if (pyxel.frame_count % 46 == 0):
             if direction == 0:
                 bombes_liste.append([direction, random.randint(0,248),0])
@@ -137,7 +137,7 @@ def bombes_creation(bombes_liste):
                 bombes_liste.append([direction,random.randint(0,248),248])
             if direction ==3:
                 bombes_liste.append([direction,0,random.randint(0,248)])
-    if Score>200:
+    if Score>500:
         if (pyxel.frame_count % 42== 0):
             if direction == 0:
                 bombes_liste.append([direction, random.randint(0,248),0])
@@ -178,8 +178,8 @@ def explosions_animation():
     """Cette fonction fait que lorsqu'une explosion est créé, il y a une certaine animation."""
     global ExplosionsListe
     for explosion in ExplosionsListe:
-        explosion[2] +=1
-        if explosion[2] == 12:
+        explosion[2] +=2
+        if explosion[2] == 20:
             ExplosionsListe.remove(explosion)  
 
 def Score_timer(Score):
@@ -235,24 +235,25 @@ def draw():
         pyxel.text(99, 137, "- PRESS ENTER -", pyxel.frame_count % 9)
         pyxel.text(106, 80, "FUEGO ARENA",4 )
     elif SceneNiveau == 3:
-        pyxel.bltm(0,0,0,1530,0,255,255)
-        pyxel.text(85,105,"Press C for credits",7)
-        pyxel.text(85,120,"Press R for rules",7)
-        pyxel.text(85,135,"Press P to play",7)
+        pyxel.bltm(0,0,0,1280,0,255,255)
+        pyxel.text(85,105,"Press C for credits",1)
+        pyxel.text(85,120,"Press R for rules",1)
+        pyxel.text(85,135,"Press P to play",1)
     elif SceneNiveau == 5:
-        pyxel.bltm(0,0,0,1530,0,255,255)
-        pyxel.text(45,105,"Creators: Quentin, Louca, Andrea, Thibault",7)
-        pyxel.text(85,120,"Musique inspiree de Mario",7)
-        pyxel.text(35,135,"Personnages inspiree de personnages deja existants",7)
-        pyxel.text(85,170,"Press A to return",7)
+        pyxel.bltm(0,0,0,1280,0,255,255)
+        pyxel.text(45,105,"Creators: Quentin, Louca, Andrea, Thibault",1)
+        pyxel.text(85,120,"Musique inspiree de Mario",1)
+        pyxel.text(35,135,"Personnages inspires de personnages deja existants",1)
+        pyxel.text(85,170,"Press A to return",pyxel.frame_count % 12)
     elif SceneNiveau == 6:
-        pyxel.bltm(0,0,0,1530,0,255,255)
-        pyxel.text(15,60,"Pour se deplacer, utilisez les fleches de direction ou les ",7)
-        pyxel.text(45,70,"touches q(gauche),z(haut),d(droite) et s(bas)",7)
-        pyxel.text(0,110,"Les bottes apparaissent frequemment et vous permettent d'aller ",7)
-        pyxel.text(60,120,"plus vite pendant une petite periode",7)
-        pyxel.text(0,90,"Le but est d'esquiver les bombes. Vous n'avez que trois vies!",7)
-        pyxel.text(85,150,"Press A to return",7)           
+        pyxel.bltm(0,0,0,1280,0,255,255)
+        pyxel.text(20,60,"Pour se deplacer, utilisez les fleches de direction ou",1)
+        pyxel.text(35,70,"les touches q(gauche),z(haut),d(droite) et s(bas)",1)
+        pyxel.text(20,90,"Les bottes apparaissent frequemment et vous permettent ",1)
+        pyxel.text(35,100,"d'aller plus vite pendant une petite periode",1)
+        pyxel.text(20,120,"Le but du jeu est d'esquiver les bombes. Vous n'avez",1)
+        pyxel.text(95,130,"que trois vies!",1)
+        pyxel.text(85,150,"Press A to return",pyxel.frame_count % 12)
     elif SceneNiveau == 4:
         pyxel.bltm(0,0,0,768,0,255,255)
         pyxel.text(85,105,"Press M after selection",7)
@@ -265,7 +266,7 @@ def draw():
         pyxel.text(145,237,"Press U",7)
         pyxel.text(212,237,"Press I",7)
     elif SceneNiveau == 1:
-        if Score<200:
+        if Score<500:
             pyxel.bltm(0,0,0,0,0,255,255)
         else:
             pyxel.bltm(0,0,0,1023,0,255,255)
@@ -285,7 +286,10 @@ def draw():
         for boost in BoostsListe:
             pyxel.blt(boost[0], boost[1], 0, 64, 0, 16, 16,6)
         for bombe in bombes_liste:
-            pyxel.blt(bombe[1], bombe[2], 0, 48, 0, 16, 16,0)
+            if Score<500:
+                pyxel.blt(bombe[1], bombe[2], 0, 48, 0, 16, 16,0)
+            else:
+                pyxel.blt(bombe[1], bombe[2], 0, 96, 0, 16, 16, 5)
         if perso==1:
             pyxel.blt(Bomberman[0], Bomberman[1], 0, 16, 0, 16, 16,12)
         if perso==2:
@@ -304,7 +308,7 @@ def draw():
             pyxel.blt(Bomberman[0], Bomberman[1], 0, 96, 80, 16, 16,9)
         
         for explosion in ExplosionsListe:
-            pyxel.circb(explosion[0]+4, explosion[1]+4, 2*(explosion[2]//4), 8+explosion[2]%3)
+            pyxel.circb(explosion[0]+4, explosion[1]+4, 2*(explosion[2]//4),8+explosion[2]%3)
     elif SceneNiveau == 2:
         pyxel.bltm(0,0,0,256,0,255,255)
     if Vies <= 0:
