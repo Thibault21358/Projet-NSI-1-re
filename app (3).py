@@ -199,7 +199,7 @@ def musique():
         musique_on=False
         
 def afficher_score():
-    pyxel.text(100, 50, "Score: {}".format(Score), 7)
+    pyxel.text(10, 160, "Score: {}".format(Score), 7)
 
 def update():
     global perso_x, perso_y, Bomberman, bombes_liste, Vies, ExplosionsListe, BoostsListe, Vitesse, SceneNiveau, perso, Score_timer, Score
@@ -315,6 +315,7 @@ def draw():
     elif SceneNiveau == 2:
         pyxel.bltm(0,0,0,256,0,255,255)
         afficher_score()
+        pyxel.text(210,160,"PRESS ENTER",pyxel.frame_count % 12)
     if Vies <= 0:
         SceneNiveau = 2
 
